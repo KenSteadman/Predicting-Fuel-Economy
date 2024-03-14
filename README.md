@@ -28,6 +28,8 @@ data = pd.read_csv("auto-mpg.csv")
 data.head()
 ```
 
+![Data Loading 1](/Result%20Images/Data%20Loading%201.png)
+
 Preliminary Data Exploration
 An initial examination using data.info() revealed a mix of data types and highlighted potential data integrity issues, particularly with the 'horsepower' feature. Additionally, the 'origin' feature was numerically coded, necessitating conversion to a categorical type to properly reflect its meaning.
 
@@ -37,7 +39,7 @@ An initial examination using data.info() revealed a mix of data types and highli
 data.info()
 ```
 
-Image
+<img src="/Result%20Images/Data%20Info%201.png" alt="Data Info 1" width="413.16" height="282.35">
 
 ## Data Cleaning
 
@@ -53,15 +55,14 @@ The conversion of 'origin' to a categorical data type is an important data clean
 data.origin = data.origin.astype("category")
 data.info()
 ```
-
-Image
+<img src="/Result%20Images/Data%20Info%202.png" alt="Data Info 2" width="412.5" height="348.5">
 
 ```
 # Descriptive statistics for numerical features
 data.describe()
 ```
 
-Image
+<img src="/Result%20Images/DataDescribe1.png" alt="Data Describe 1" >
 
 ```
 
@@ -69,14 +70,14 @@ Image
 data.horsepower.unique()
 ```
 
-Image
+<img src="/Result%20Images/Horsepower%20Unique%201.png" alt="Horsepower Unique 1">
 
 ```
 # Querying rows where 'horsepower' is missing or marked as "?"
 data.query('horsepower == "?"')
 ```
 
-Image
+<img src="/Result%20Images/Data%20Query%20Horsepower.png" alt="Data Query Horsepower">
 
 ```
 # Mean imputation of missing values in 'horsepower' column
@@ -85,13 +86,13 @@ data.horsepower = data.horsepower.fillna(data.horsepower.mean())
 data.info()
 ```
 
-Image
+<img src="/Result%20Images/Data%20Info%203.png" alt="Data Info 3" width="412.5" height="348.5">
 
 ```
 data.describe()
 ```
 
-Image
+<img src="/Result%20Images/Data%20Describe%202.png" alt="Data Describe 2" >
 
 Interpretation: These step ensures that 'horsepower' can be utilized in numerical analyses and models. Imputing missing values helps maintain the size of the dataset, although it's important to consider whether mean imputation is the best strategy based on the distribution and importance of 'horsepower'.
 
@@ -108,7 +109,7 @@ I conducted an extensive EDA to understand the underlying patterns within the da
 sns.histplot(data.mpg)
 ```
 
-Image
+<img src="/Result%20Images/Histplot.png" alt="Histplot" >
 
 2. **Pairwise relationships:** Scatter plots and correlation analyses showed varying degrees of association between 'mpg' and other variables.
 
@@ -116,7 +117,7 @@ Image
 sns.pairplot(data, corner=True)
 ```
 
-Image
+<img src="/Result%20Images/Pairplot.png" alt="Pairplot" width="615" height="615" >
 
 3. **Bar plot of 'mpg' by 'origin':** Indicated differences in fuel efficiency across regions.
 
@@ -125,7 +126,7 @@ Image
 sns.barplot(x='origin', y='mpg', data=data)
 ```
 
-Image
+<img src="/Result%20Images/barplot.png" alt="Barplot" >
 
 4. **Correlation heatmap:** Helped reveal significant negative associations between 'mpg' and features like 'weight', and positive associations with 'model year'.
 
@@ -140,7 +141,7 @@ sns.heatmap(
 )
 ```
 
-Image
+<img src="/Result%20Images/heatmap.png" alt="Heatmap" >
 
 **Interpretation:** These visualizations help identify trends, outliers, and relationships within the data. For example, the 'mpg' histogram and scatter plots can reveal the distribution of fuel efficiency across vehicles and its relationships with other variables. The correlation heatmap aids in identifying potential predictors for regression models by highlighting strong positive or negative correlations with 'mpg'.
 
@@ -158,7 +159,7 @@ data_model = pd.get_dummies(data_model, drop_first=True, dtype=int)  # Specify d
 data_model.head()
 ```
 
-Image
+<img src="/Result%20Images/Feature%20Engineering%201.png" alt="Feature Engineering 1" width="412.5" height="348.5">
 
 **Interpretation:** By extending the feature set and using cross-validation, you can evaluate the model's ability to generalize to unseen data and select the most relevant predictors. The residual analysis, including the residual plot and Q-Q plot, is crucial for verifying that the residuals are normally distributed and have constant variance, ensuring that the linear model is appropriate for the data.
 
@@ -256,14 +257,14 @@ def residual_analysis_plots(model):
 residual_analysis_plots(model)
 ```
 
-Image
+<img src="/Result%20Images/Residual%20&%20Q-Q%20plot.png" alt="Residual & Q-Q plot">
 
 ```
 # Summary of the regression model results
 model.summary()
 ```
 
-Image
+<img src="/Result%20Images/Model%20summary%201.png" alt="Model Summary 1" width="412.5" height="406.825">
 
 ## Reflecting on My Findings
 
@@ -306,7 +307,7 @@ The comparative analysis between the test metrics and validation phase outcomes 
 model.summary()
 ```
 
-Image
+<img src="/Result%20Images/Model%20Summary%20Final.png" alt="Model Summary Final" width="412.5" height="406.825" >
 
 The final model summary reveals detailed statistics, including the coefficients, standard errors, and confidence intervals for each predictor. This comprehensive overview allows for an in-depth interpretation of how each feature influences vehicle fuel efficiency.
 
